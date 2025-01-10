@@ -68,3 +68,30 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+###Deployment using Docker, K8 with CI/CD 
+
+##Build and run the Docker container locally to verify it works:
+
+docker build -t react-app .
+docker run -p 3000:80 react-app
+
+
+##Push the Docker image to a container registry:
+
+docker push your-dockerhub-username/react-app:latest
+
+##Apply the Kubernetes manifests:
+
+kubectl apply -f k8s/react-deployment.yaml
+kubectl apply -f k8s/react-service.yaml
+
+##Build and Push: Verify that the CI/CD pipeline successfully builds the Docker image and pushes it to your container registry.
+Kubernetes Deployment: Ensure that the app is deployed correctly:
+
+kubectl get pods
+kubectl get services
+
+##Access the App: Use the external IP provided by the Kubernetes service to access your React app.
